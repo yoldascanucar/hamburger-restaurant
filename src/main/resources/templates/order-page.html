@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hamburger Order Customization</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/order-page-styles.css}" rel="stylesheet">
+    <link th:href="@{/css/common-styles.css}" rel="stylesheet">
+</head>
+
+
+<body>
+<!-------- Modal Backdrop -->
+<div class="modal-backdrop" th:classappend="${showModal} ? 'show' : ''"></div>
+
+<!-------------- Modal Container -->
+<div class="modal-container">
+    <div class="modal-content">
+        <!------------ Hamburger Image, Name and Price -->
+        <div class="text-center">
+            <img th:src="${hamburger.imageUrl}" class="img-fluid mb-3">
+            <a th:href="@{'/menu/' + ${hamburger.hamburgerCategory.hamburgerCategoryName}}"
+               class="modal-close">
+                X
+            </a>
+            <h2 th:text="${hamburger.name}" class="mt-4"></h2>
+            <h4 th:text="${hamburger.basePrice} + ' TL'" class="text-muted mb-4"></h4>
+        </div>
+
+        <!-------------- Order Customization Form -->
+        <form th:action="@{/basket}" method="post">
+
+            <input type="hidden" name="selectedHamburger" th:value="${hamburger.id}">
+            <!-- Sauces Selection -->
+            <div class="selection-container">
+                <h5>Sauces</h5>
+                <div class="sauce-container">
+                    <div th:each="sauce, iterStat : ${allSauces}">
+                        <div class="sauce-item" th:classappend="${iterStat.index >= 4 ? 'hidden' : ''}">
+                            <input type="checkbox" th:id="'sauce_' + ${sauce.sauceId}"
+                                   name="selectedSauces"
+                                   th:value="${sauce.sauceId}"
+                                   onchange="updateTotal()">
+                            <label th:for="'sauce_' + ${sauce.sauceId}" th:text="${sauce.name}"></label>
+                            <span class="sauce-price" th:text="${sauce.price} + ' TL'"></span>
+                        </div>
+                    </div>
+                    <span class="toggle-link" onclick="toggleSauces(this)" th:if="${allSauces.size() > 4}">
+                        Show More <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+            <!----------------------- Sides Selection -->
+            <div class="selection-container">
+                <h5>Sides</h5>
+                <div class="sides-container">
+                    <div th:each="side, iterStat : ${allSides}">
+                        <div class="side-item" th:classappend="${iterStat.index >= 4 ? 'hidden' : ''}">
+                            <input type="checkbox" th:id="'side_' + ${side.sideId}"
+                                   name="selectedSides"
+                                   th:value="${side.sideId}"
+                                   onchange="updateTotal()">
+                            <label th:for="'side_' + ${side.sideId}" th:text="${side.name}"></label>
+                            <span class="side-price" th:text="${side.price} + ' TL'"></span>
+                        </div>
+                    </div>
+                    <span class="toggle-link" onclick="toggleSides(this)" th:if="${allSides.size() > 4}">
+                        Show More <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+            <!---------------------- Drinks Selection -->
+            <div class="selection-container">
+                <h5>Drinks</h5>
+                <div class="drinks-container">
+                    <div th:each="drink, iterStat : ${allDrinks}">
+                        <div class="drink-item" th:classappend="${iterStat.index >= 4 ? 'hidden' : ''}">
+                            <input type="checkbox" th:id="'drink_' + ${drink.drinkId}"
+                                   name="selectedDrinks"
+                                   th:value="${drink.drinkId}"
+                                   onchange="updateTotal()">
+                            <label th:for="'drink_' + ${drink.drinkId}" th:text="${drink.name}"></label>
+                            <span class="drink-price" th:text="${drink.price} + ' TL'"></span>
+                        </div>
+                    </div>
+                    <span class="toggle-link" onclick="toggleDrinks(this)" th:if="${allDrinks.size() > 4}">
+                        Show More <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+            <!----------------- Total Price  and Submit -->
+            <div class="total-container">
+                <h4>Total: <span id="totalPrice">0 TL</span></h4>
+                <input type="hidden" id="totalPriceInput" name="totalPrice" value="0">
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-lg w-30">Add to Basket</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+   const backdrop = document.querySelector('.modal-backdrop');
+   if (backdrop) {
+      backdrop.addEventListener('click', function(e) {
+        if (e.target === backdrop) {
+          window.location.href = '/menu/[[${categoryId}]]';
+        }
+      });
+   }
+
+
+   function toggleSauces(span) {
+       toggleItems(span, '.sauce-container');
+   }
+
+   function toggleSides(span) {
+       toggleItems(span, '.sides-container');
+   }
+
+   function toggleDrinks(span) {
+       toggleItems(span, '.drinks-container');
+   }
+
+   function toggleItems(span, containerSelector) {
+       const container = span.closest('.selection-container').querySelector(containerSelector);
+       const items = container.querySelectorAll('.sauce-item, .side-item, .drink-item');
+
+      if (span.textContent.includes('Show More')) {
+           items.forEach(item => item.classList.remove('hidden'));
+           span.textContent = 'Show Less';
+      } else {
+           items.forEach((item, index) => {
+             if (index >= 4) {
+               item.classList.add('hidden');
+            }
+       });
+           span.textContent = 'Show More';
+     }
+   }
+
+  // UPDATING TOTAL PRICE
+
+ function updateTotal() {
+   let total = parseFloat(document.querySelector('h4').textContent.replace(' TL', ''));
+
+   document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+       const priceSpan = checkbox.nextElementSibling.nextElementSibling;
+       if (priceSpan) {
+           const price = parseFloat(priceSpan.textContent.replace(' TL', ''));
+           total += price;
+       }
+   });
+
+   const totalPriceElement = document.getElementById('totalPrice');
+   const totalPriceInput = document.getElementById('totalPriceInput');
+
+   totalPriceElement.textContent = total.toFixed(2) + ' TL';
+   totalPriceInput.value = total.toFixed(2);
+}
+
+   document.addEventListener('DOMContentLoaded', updateTotal);
+
+   document.addEventListener('DOMContentLoaded', function() {
+       if (document.querySelector('.modal-backdrop.show')) {
+           document.body.classList.add('modal-open');
+       }
+   });
+
+</script>
+
+</body>
+</html>
+

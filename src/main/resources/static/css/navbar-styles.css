@@ -1,0 +1,31 @@
+
+/* Navbar */
+ .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 22px;
+            color: #ffffff;
+        }
+
+        .nav-link {
+            font-size: 22px;
+            color: #ffffff;
+            margin: 0 5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ff6b35 !important;
+        }

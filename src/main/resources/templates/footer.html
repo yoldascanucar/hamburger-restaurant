@@ -1,0 +1,38 @@
+<!-- footer.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .footer-column {
+            padding: 0 !important;
+        }
+
+        .footer-column h5,
+        .footer-column p {
+            padding: 0 !important;
+            margin-left: 0 !important;
+        }
+    </style>
+</head>
+<footer th:fragment="footer" class="footer mt-auto py-4 bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 footer-column">
+                <h5>Can Burger</h5>
+                <p>Serving the best burgers in town since 2024.</p>
+            </div>
+            <div class="col-md-4 footer-column">
+                <h5>Opening Hours</h5>
+                <p class="mb-1">Monday - Friday: 11:00 - 22:00</p>
+                <p class="mb-1">Saturday - Sunday: 12:00 - 23:00</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 text-center border-top pt-3">
+                <small>&copy; 2024 Can Burger. All rights reserved.</small>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
