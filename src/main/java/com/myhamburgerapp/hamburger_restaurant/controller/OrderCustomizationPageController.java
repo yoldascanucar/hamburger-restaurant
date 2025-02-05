@@ -63,7 +63,7 @@ public class OrderCustomizationPageController {
             @RequestParam(value = "selectedSides", required = false) List<Integer> sideIds,
             @RequestParam("totalPrice") BigDecimal totalPrice, Order order, HttpSession session, Authentication authentication) {
 
-        // Log authentication status
+        // Loggin authentication status
         logger.info("Session ID: " + session.getId());
         logger.info("User ID in session: " + session.getAttribute("userId"));
         logger.info("Is user authenticated: " + (authentication != null && authentication.isAuthenticated()));
@@ -72,11 +72,11 @@ public class OrderCustomizationPageController {
             return "redirect:/login";
         }
 
-        // Get the authenticated user
+        // Getting the Authenticated user
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Customer customer = userDetails.getCustomer();
 
-        // Set the customer on the order
+           // Setting the customer on the order
         order.setCustomer(customer);
 
         order.setOrderHamburger(hamburgerService.getHamburgerById(hamburgerId));

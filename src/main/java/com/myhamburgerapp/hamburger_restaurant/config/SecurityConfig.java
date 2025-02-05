@@ -43,7 +43,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/register", "/login", "/css/**", "/webjars/**").permitAll()
-                        .requestMatchers("/basket").authenticated() // Secure the /basket endpoint
+                        .requestMatchers("/basket").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -57,10 +57,10 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout=true")
-                        .invalidateHttpSession(true) // Invalidate session on logout
+                        .invalidateHttpSession(true)
                         .permitAll()
                 ).sessionManagement(session -> session
-                        .sessionFixation().none() // Ensures session attributes are migrated
+                        .sessionFixation().none()
                 )
                 .csrf(AbstractHttpConfigurer::disable);
 

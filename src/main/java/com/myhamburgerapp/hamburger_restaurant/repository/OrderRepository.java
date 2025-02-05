@@ -9,5 +9,4 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     List<Order> findAllByCustomer_Id(int customerId);
 
-    // get order detail by order id
 }

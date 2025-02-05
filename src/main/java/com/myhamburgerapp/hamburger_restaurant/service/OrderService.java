@@ -18,7 +18,6 @@
             this.orderRepository = orderRepository;
         }
 
-        // database'e kaydedip session oluşturma
         @Transactional
         public void saveOrderToDB(Order order) {
             orderRepository.saveAndFlush(order);
