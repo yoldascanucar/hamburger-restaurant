@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/login-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/login-registration-common-styles.css}">
+
+    <style>
+        button.checkout-btn {
+            position: absolute;
+            top: 90%;
+            left: 75%;
+            transform: translate(-75%, -90%);
+            padding: 8px 24px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+         a.prev-btn {
+            position: absolute;
+            top: 90%;
+            left: 25%;
+            transform: translate(-25%, -90%);
+            padding: 8px 24px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #fa1640;
+            font-size: 16px;
+            line-height: 1.5;
+            display: inline-block;
+         }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="checkout-page">
+  <div class="container">
+     <h2 class="card-title text-center mb-4">Checkout</h2>
+        <form th:action="@{/checkout}" method="post">
+       <!-- Name Fields -->
+             <div class="form-group">
+                    <input type="text"
+                            class="form-control"
+                            id="firstName"
+                            placeholder="Enter your First Name">
+             </div>
+             <div class="form-group">
+                    <input type="text"
+                            class="form-control"
+                            id="lastName"
+                            placeholder="Enter your Last Name">
+             </div>
+           <!-- Phone Number -->
+             <div class="form-group">
+                    <input type="tel"
+                            class="form-control"
+                            id="phoneNumber"
+                            placeholder="Enter your Phone Number">
+             </div>
+           <!-- Credit Card Number -->
+             <div class="form-group">
+                    <input type="text"
+                            class="form-control"
+                            id="creditCard"
+                            placeholder="Enter your Credit Card Number">
+             </div>
+             <div>
+                 <button class="checkout-btn btn-primary" type="submit">Purchase</button>
+             </div>
+             <div>
+                <a th:href="@{/basket}" class="prev-btn btn-danger" >Return</a>
+             </div>
+        </form>
+     </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
