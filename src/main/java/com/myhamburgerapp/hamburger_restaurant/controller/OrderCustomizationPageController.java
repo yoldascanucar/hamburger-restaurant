@@ -86,6 +86,6 @@ public class OrderCustomizationPageController {
         order.setTotalPrice(totalPrice);
 
         orderService.saveOrderToDB(order);
-        return "redirect:/";
+        return "redirect:/basket";
     }
 }

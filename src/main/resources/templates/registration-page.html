@@ -13,22 +13,30 @@
 
         <form th:action="@{/register}" method="post" th:object="${customer}">
             <div class="form-group">
-                <input type="text" id="name" th:field="*{customerName}"
+                <input type="text"
+                       id="name"
+                       th:field="*{customerName}"
                        th:placeholder="${#fields.hasErrors('customerName')} ? ${#fields.errors('customerName')[0]} : 'Enter your first name'"
                        th:class="${#fields.hasErrors('customerName')} ? 'error' : ''">
             </div>
             <div class="form-group">
-                <input type="text" id="lastName" th:field="*{customerLastName}"
+                <input type="text"
+                       id="lastName"
+                       th:field="*{customerLastName}"
                        th:placeholder="${#fields.hasErrors('customerLastName')} ? ${#fields.errors('customerLastName')[0]} : 'Enter your last name'"
                        th:class="${#fields.hasErrors('customerLastName')} ? 'error' : ''">
             </div>
             <div class="form-group">
-                <input type="text" id="mail" th:field="*{customerMail}"
+                <input type="text"
+                       id="mail"
+                       th:field="*{customerMail}"
                        th:placeholder="${#fields.hasErrors('customerMail') ? #fields.errors('customerMail')[0] : 'Enter your email'}"
                        th:class="${#fields.hasErrors('customerMail')} or ${mailError != null} ? 'error' : ''">
             </div>
             <div class="form-group">
-                <input type="password" id="password" th:field="*{customerPassword}"
+                <input type="password"
+                       id="password"
+                       th:field="*{customerPassword}"
                        th:placeholder="${#fields.hasErrors('customerPassword') ? #fields.errors('customerPassword')[0] : 'Enter your password'}"
                        th:class="${#fields.hasErrors('customerPassword')} ? 'error' : ''">
             </div>
