@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CheckoutController {
@@ -29,28 +30,25 @@ public class CheckoutController {
                                  @RequestParam(value = "lastName") String lastName,
                                  @RequestParam(value = "phoneNumber") String phoneNumber,
                                  @RequestParam(value = "creditCardNumber") String creditCardNumber,
-                                 Model model) {
+                                 RedirectAttributes redirectAttributes) {
 
       boolean isEmpty = checkoutValidation.isEmpty(firstName, lastName, phoneNumber, creditCardNumber);
       boolean isPhoneValid = checkoutValidation.isPhoneNumberValid(phoneNumber);
       boolean isCreditCardValid = checkoutValidation.isCreditCardValid(creditCardNumber);
 
       if (isEmpty) {
-          model.addAttribute("EmptyFieldError", "Fields cannot be empty");
-          logger.info("Empty Field");
-          return "checkout-page";
+          redirectAttributes.addFlashAttribute("emptyFieldError", "Fields cannot be empty");
+          return "redirect:/checkout";
       }
 
       if (!isPhoneValid) {
-          model.addAttribute("InvalidPhoneNumberError","Enter a valid phone number");
-          logger.info("Invalid Phone");
-          return "checkout-page";
+          redirectAttributes.addFlashAttribute("invalidPhoneNumberError","Enter a valid phone number");
+          return "redirect:/checkout";
       }
 
       if (!isCreditCardValid) {
-          model.addAttribute("InvalidCreditCardError", "Enter a valid credit card number");
-          logger.info("Invalid Card");
-          return "checkout-page";
+          redirectAttributes.addFlashAttribute("invalidCreditCardError", "Enter a valid credit card number");
+          return "redirect:/checkout";
       }
 
         return "redirect:/success?firstName=" + firstName + "&lastName=" + lastName;

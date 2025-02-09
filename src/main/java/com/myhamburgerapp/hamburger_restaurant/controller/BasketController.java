@@ -66,7 +66,6 @@ public class BasketController {
         }
 
         model.addAttribute("orders", orders);
-
         logger.info("Sipariş içinde: {}", orders.get(0));
 
         return "basket";

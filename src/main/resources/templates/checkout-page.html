@@ -38,6 +38,11 @@
             line-height: 1.5;
             display: inline-block;
          }
+
+         input.error::placeholder {
+            color: red !important;
+            opacity: 1;
+         }
     </style>
 </head>
 <body class="bg-light">
@@ -52,14 +57,16 @@
                             class="form-control"
                             name="firstName"
                             th:value="${firstName}"
-                            placeholder="Enter your First Name">
+                            th:class="${emptyFieldError != null} ? 'error' : ''"
+                            th:placeholder="${emptyFieldError != null} ? ${emptyFieldError} : 'Enter your first name' ">
              </div>
              <div class="form-group">
                     <input type="text"
                             class="form-control"
                             name="lastName"
                             th:value="${lastName}"
-                            placeholder="Enter your Last Name">
+                            th:class="${emptyFieldError != null} ? 'error' : ''"
+                            th:placeholder="${emptyFieldError != null} ? ${emptyFieldError} : 'Enter your last name'">
              </div>
            <!-- Phone Number -->
              <div class="form-group">
@@ -67,7 +74,8 @@
                             class="form-control"
                             name="phoneNumber"
                             th:value="${phoneNumber}"
-                            placeholder="Enter your Phone Number">
+                            th:class="${emptyFieldError != null or invalidPhoneNumberError != null} ? 'error' : ''"
+                            th:placeholder="${emptyFieldError != null} ? ${emptyFieldError} : (${invalidPhoneNumberError != null} ? ${invalidPhoneNumberError} : 'Enter a phone number') ">
              </div>
            <!-- Credit Card Number -->
              <div class="form-group">
@@ -75,7 +83,8 @@
                            class="form-control"
                            name="creditCardNumber"
                            th:value="${creditCardNumber}"
-                           placeholder="Enter your Credit Card Number"
+                           th:class="${emptyFieldError != null or invalidCreditCardError != null} ? 'error' : ''"
+                           th:placeholder="${emptyFieldError != null} ? ${emptyFieldError} : (${invalidCreditCardError != null} ? ${invalidCreditCardError} : 'Enter a credit card number')"
                            maxlength="19"
                            oninput="formatCreditCard(this)">
              </div>
@@ -97,7 +106,6 @@
         if (value.length > 0) {
             value = value.match(/.{1,4}/g).join('-');
         }
-
         input.value = value;
     }
 </script>
