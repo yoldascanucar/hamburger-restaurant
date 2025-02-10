@@ -15,7 +15,7 @@
         @Column(name = "name", nullable = false)
         private String name;
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
         @JoinColumn(name = "category_id", nullable = false)
         private HamburgerCategory hamburgerCategory;
 

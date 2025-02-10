@@ -21,23 +21,23 @@ public class Order {
     private Customer customer;
 
     // 1 order'da sadece 1 siparişi verilmiş hamburger olabilir.
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "order_id")
     private OrderHamburger orderHamburger;
 
     // 1 order'da birde fazla siparişi verilmiş içecekler olabilir.
     // Siparişi verilmiş içecekler sadece 1 order'a ait olabilir.
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<OrderDrink> orderDrinks;
 
     // 1 order'da birde fazla siparişi verilmiş soslar olabilir.
     // Siparişi verilmiş soslar sadece 1 order'a ait olabilir.
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<OrderSauce> orderSauces;
 
     // 1 order'da birde fazla siparişi verilmiş sides olabilir.
     // Siparişi verilmiş sides sadece 1 order'a ait olabilir.
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<OrderSide> orderSides;
 
     @Column(nullable = false, precision = 10, scale = 2)
