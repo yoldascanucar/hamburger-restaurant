@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger Haven - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/navbar-styles.css}">
     <link rel="stylesheet" th:href="@{/css/common-styles.css}">
@@ -15,27 +16,31 @@
 
 <section class="about-section">
     <div class="about-content">
-        <h1>Welcome to Hamburgerciyiz</h1>
-        <p>
-            Established in <span class="highlight">2024</span> in the vibrant heart of
-            <span class="highlight">Bahçelievler, İstanbul</span>, Hamburgerciyiz is your go-to destination for
-            mouthwatering hamburgers crafted with love and passion.
-        </p>
-        <p>
-            With just one branch so far, our journey is just beginning. We pride ourselves on serving
-            the freshest ingredients, bold flavors, and an unforgettable dining experience for every
-            burger enthusiast.
-        </p>
-        <p>
-            Join us as we continue to grow and share our love for hamburgers, one bite at a time.
-            Welcome to the Hamburgerciyiz family!
-        </p>
+        <h2>Welcome to Can Burger</h2>
+        <div class="story-section">
+            <p>
+                In the culinary landscape of <span class="highlight">Bahçelievler, İstanbul</span>,
+                a new story began in <span class="highlight">2024</span>. Can Burger emerged as
+                a testament to our passion for creating the perfect burger experience.
+            </p>
+            <p>
+                Every day, we craft stories through our burgers – stories of premium ingredients,
+                bold flavors, and culinary innovation. Our kitchen is where tradition meets creativity,
+                and every bite tells a tale of dedication to quality.
+            </p>
+            <p>
+                While our journey starts with a single location, our vision extends far beyond.
+                We're not just serving burgers; we're creating memories, one perfectly crafted
+                burger at a time.
+            </p>
+        </div>
+        <div class="signature">
+            Welcome to the Can Burger family!
+        </div>
     </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<div th:replace="~{footer :: footer}"></div>
 
 </body>
 </html>

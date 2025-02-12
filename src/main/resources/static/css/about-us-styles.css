@@ -5,7 +5,6 @@
     background-position: center;
     color: white;
     text-align: center;
-    padding: 50px 20px;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -27,22 +26,52 @@
     position: relative;
     z-index: 2;
     max-width: 800px;
-    padding: 20px;
+    padding: 40px;
+    margin-top: 70px;
     background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.about-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+
+.about-content h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-family: 'Carlito', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #FFD700;
 }
 
-.about-content p {
-    font-size: 1.2rem;
+
+.story-section {
+    text-align: left;
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 3px solid #FFD700;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0 10px 10px 0;
+}
+
+.story-section p {
+    font-size: 18px;
     line-height: 1.8;
+    margin: 15px 0;
+    font-family: 'Roboto', sans-serif;
 }
 
-.about-content .highlight {
+.highlight {
     color: #FFD700;
     font-weight: bold;
+    font-style: italic;
 }
+
+.signature {
+    margin-top: 30px;
+    font-family: 'Carlito', sans-serif;
+    font-style: italic;
+    color: #FFD700;
+    font-size: 1.3rem;
+}
+

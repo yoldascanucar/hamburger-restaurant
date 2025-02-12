@@ -9,16 +9,16 @@
 </head>
 <body>
 <div class="container my-5">
-    <!-- Empty Basket Message -->
+
     <div th:if="${#lists.isEmpty(orders)}" class="text-center my-5">
         <h2>Your basket is empty</h2>
         <a th:href="@{/menu}" class="btn btn-primary mt-3">Return to Menu</a>
     </div>
 
-    <!---- Basket Items -->
+    <!---- Basket items -->
     <div th:if="${not #lists.isEmpty(orders)}" class="basket-container">
         <h2 class="mb-4">Your Basket</h2>
-        <!----- Single Basket Item -->
+
         <div class="basket-items">
             <div th:each="order : ${orders}" class="basket-item card mb-3">
                 <div class="row g-0">
@@ -42,7 +42,7 @@
                                     </span>
                                 </div>
 
-                                <!----- Sides -->
+                                <!------------- Sides -->
                                 <div th:if="${not #lists.isEmpty(order.orderSides)}" class="extras-section">
                                     <strong>Sides:</strong>
                                     <span th:each="orderSide, sideStat : ${order.orderSides}">

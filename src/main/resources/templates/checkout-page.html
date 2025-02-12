@@ -51,7 +51,7 @@
   <div class="container">
      <h2 class="card-title text-center mb-4">Checkout</h2>
         <form th:action="@{/checkout}" method="post">
-       <!-- Name Fields -->
+       <!----- Name Fields -->
              <div class="form-group">
                     <input type="text"
                             class="form-control"
@@ -68,7 +68,7 @@
                             th:class="${emptyFieldError != null} ? 'error' : ''"
                             th:placeholder="${emptyFieldError != null} ? ${emptyFieldError} : 'Enter your last name'">
              </div>
-           <!-- Phone Number -->
+           <!------ Phone Number -->
              <div class="form-group">
                     <input type="tel"
                             class="form-control"
@@ -77,7 +77,7 @@
                             th:class="${emptyFieldError != null or invalidPhoneNumberError != null} ? 'error' : ''"
                             th:placeholder="${emptyFieldError != null} ? ${emptyFieldError} : (${invalidPhoneNumberError != null} ? ${invalidPhoneNumberError} : 'Enter a phone number') ">
              </div>
-           <!-- Credit Card Number -->
+           <!---- Credit Card Number -->
              <div class="form-group">
                     <input type="text"
                            class="form-control"

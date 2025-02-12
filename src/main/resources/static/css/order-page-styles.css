@@ -70,8 +70,8 @@ body.modal-open {
 .selection-container {
     margin: 0 auto;
     margin-top: 50px;
-    margin-bottom: 20px; /* Add spacing between dropdowns */
-    width: 100%; /* Make dropdowns full-width */
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 
@@ -105,7 +105,7 @@ body.modal-open {
 
 .sauce-price, .drink-price, .side-price {
     margin-right: 20px;
-    color: #28a745; /* Optional: matches the green color used elsewhere in the CSS */
+    color: #28a745;
 }
 
 .toggle-link {

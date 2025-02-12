@@ -6,7 +6,6 @@ body {
     font-style: italic;
 }
 
-/* ORTAK */
 
 @keyframes fadeInSlideUp {
     from {
@@ -15,11 +14,10 @@ body {
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(30px);
     }
 }
 
-/* ORTAK */
 
 h1 {
     text-align: center;
@@ -30,10 +28,51 @@ h1 {
     animation-delay: 2.5s;
 }
 
-/** ORTAK **/
 
 h5 {
     margin-left: 20px;
     margin-bottom: 30px;
     font-weight:bold;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    margin-bottom: 20px;
+}
+
+.desc-column,
+.hours-column {
+    text-align: center;
+}
+
+.column-title {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.column-text {
+    margin-bottom: 5px;
+}
+
+.days {
+    margin-right: 28px;
+}
+
+.phone {
+    margin-right: 95px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
