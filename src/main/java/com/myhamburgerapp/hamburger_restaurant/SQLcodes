@@ -1,0 +1,99 @@
+
+
+CREATE TABLE burger_restaurant.categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL UNIQUE,
+    cover_url VARCHAR(1000)
+);
+
+
+CREATE TABLE burger_restaurant.customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    mail VARCHAR(500) NOT NULL,
+    password VARCHAR(1000) NOT NULL
+);
+
+CREATE TABLE burger_restaurant.orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    total_price 				NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+CREATE TABLE burger_restaurant.hamburgers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    base_price INT NOT NULL,
+    image_url VARCHAR(1000),
+    is_available BOOLEAN DEFAULT TRUE,
+    category_id INT NOT NULL
+);
+
+CREATE TABLE burger_restaurant.order_hamburger (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    hamburger_id INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (hamburger_id) REFERENCES hamburgers(id)
+);
+
+CREATE TABLE burger_restaurant.drinks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    description TEXT,
+    price INT NOT NULL,
+    size VARCHAR(10) NOT NULL,
+    image_url VARCHAR(1000),
+    is_available BOOLEAN DEFAULT TRUE
+);
+
+
+CREATE TABLE burger_restaurant.order_drinks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    drink_id INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (drink_id) REFERENCES drinks(id)
+);
+
+
+CREATE TABLE burger_restaurant.sauces (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    price INT NOT NULL,
+    image_url VARCHAR(1000),
+    is_available BOOLEAN DEFAULT TRUE
+);
+
+
+CREATE TABLE burger_restaurant.order_sauces (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    sauce_id INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (sauce_id) REFERENCES sauces(id)
+);
+
+CREATE TABLE burger_restaurant.sides (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    price INT NOT NULL,
+    size VARCHAR(10) NOT NULL,
+    image_url VARCHAR(1000),
+    is_available BOOLEAN DEFAULT TRUE
+);
+
+
+CREATE TABLE burger_restaurant.order_sides (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    side_id INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (side_id) REFERENCES sides(id)
+);

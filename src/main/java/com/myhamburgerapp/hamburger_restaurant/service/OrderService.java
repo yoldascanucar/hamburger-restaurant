@@ -32,17 +32,14 @@
             return orderRepository.findAllByCustomer_Id(customerId);
         }
 
-
         @Transactional
         public void emptyBasket(int customerId) {
-            // Fetch orders first
             List<Order> orders = orderRepository.findAllByCustomer_Id(customerId);
 
             for (Order order : orders) {
-                // Detach from persistence context first
+
                 entityManager.detach(order);
 
-                // Use explicit delete queries
                 entityManager.createQuery("DELETE FROM OrderDrink od WHERE od.order.orderId = :orderId")
                         .setParameter("orderId", order.getOrderId())
                         .executeUpdate();
@@ -59,7 +56,6 @@
                         .setParameter("orderId", order.getOrderId())
                         .executeUpdate();
 
-                // Finally delete the order
                 entityManager.createQuery("DELETE FROM Order o WHERE o.orderId = :orderId")
                         .setParameter("orderId", order.getOrderId())
                         .executeUpdate();
